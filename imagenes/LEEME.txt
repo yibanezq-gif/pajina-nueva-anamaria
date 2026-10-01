@@ -1,0 +1,6 @@
+Carpeta para organizar las imagenes de Hilos & Suenos.
+
+Formatos sugeridos: JPG, PNG o WEBP.
+Para usar una imagen local en la tienda, referencia su ruta como: imagenes/nombre-de-imagen.jpg
+
+Nota: las imagenes que se suben desde admin.html se guardan en el almacenamiento local del navegador; no se copian automaticamente a esta carpeta.

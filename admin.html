@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8f1">
+  <title>Administración | Hilos & Sueños</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="admin-page">
+  <header class="admin-topbar">
+    <a class="admin-brand" href="index.html">
+      <span class="admin-brand-mark">H&S</span>
+      <span>Hilos & Sueños<small>Administración de tienda</small></span>
+    </a>
+    <a class="admin-store-link" href="index.html">Volver a la tienda</a>
+  </header>
+
+  <main class="admin-shell">
+    <section class="admin-login-view" id="adminLoginView">
+      <p class="eyebrow">Acceso privado</p>
+      <h1>Bienvenido de nuevo</h1>
+      <p class="admin-login-intro">Ingresa tus credenciales para gestionar la información de la tienda.</p>
+      <form id="adminLoginForm" autocomplete="off">
+        <label for="adminUser">Usuario o correo electrónico</label>
+        <input id="adminUser" name="username" type="text" autocomplete="off" autocapitalize="none" required placeholder="Escribe tu usuario o correo">
+        <label for="adminPassword">Contraseña</label>
+        <input id="adminPassword" name="password" type="password" autocomplete="new-password" required placeholder="Escribe tu contraseña">
+        <button class="btn-primary" type="submit">Ingresar al panel</button>
+        <p class="admin-form-message is-error" id="adminLoginMessage" role="alert" hidden>Usuario o contraseña incorrectos.</p>
+      </form>
+    </section>
+
+    <section class="admin-dashboard" id="adminDashboard" hidden>
+      <header class="admin-dashboard-heading">
+        <div>
+          <p class="eyebrow">Gestión de tienda</p>
+          <h1>¡Hola, <span id="adminCurrentUser"></span>!</h1>
+          <p>Qué gusto tenerte aquí. Tu tienda está lista para gestionar.</p>
+        </div>
+        <button class="btn-secondary" id="adminLogout" type="button">Cerrar sesión</button>
+      </header>
+
+      <section class="admin-profile-photo-settings" aria-labelledby="adminProfilePhotoHeading">
+        <div class="admin-profile-photo-preview">
+          <img id="adminProfilePhotoPreview" alt="Foto de perfil" hidden>
+          <span id="adminProfilePhotoInitials">A</span>
+        </div>
+        <div class="admin-profile-photo-content">
+          <h2 id="adminProfilePhotoHeading">Foto de perfil</h2>
+          <p>Esta imagen aparecerá junto a tu nombre en la tienda.</p>
+          <div class="admin-profile-photo-actions">
+            <div class="admin-file-picker">
+              <input class="admin-file-input" id="adminProfilePhotoInput" type="file" accept="image/*" aria-label="Seleccionar foto de perfil">
+              <label class="admin-file-trigger" for="adminProfilePhotoInput">Seleccionar foto</label>
+              <span class="admin-file-name" id="adminProfilePhotoFileName">Sin archivo seleccionado</span>
+            </div>
+            <button class="btn-secondary" id="saveAdminProfilePhoto" type="button">Guardar foto</button>
+            <button class="btn-secondary" id="removeAdminProfilePhoto" type="button">Quitar foto</button>
+          </div>
+          <p class="admin-form-message" id="adminProfilePhotoMessage" role="status"></p>
+        </div>
+      </section>
+
+      <nav class="admin-tabs" aria-label="Secciones de administración">
+        <button type="button" class="is-active" data-admin-tab="store">Datos de la tienda</button>
+        <button type="button" data-admin-tab="products">Productos</button>
+        <button type="button" data-admin-tab="access">Credenciales</button>
+      </nav>
+
+      <section class="admin-panel" data-admin-panel="store">
+        <div class="admin-panel-heading">
+          <div>
+            <h2>Información del negocio</h2>
+            <p>Estos datos se muestran en la tienda y en la página de contacto.</p>
+          </div>
+        </div>
+        <form id="storeSettingsForm" class="settings-grid">
+          <div class="admin-field">
+            <label for="companyName">Nombre de la empresa</label>
+            <input id="companyName" name="companyName" required maxlength="80">
+          </div>
+          <div class="admin-field">
+            <label for="legalName">Razón social</label>
+            <input id="legalName" name="legalName" maxlength="120" placeholder="Nombre legal del negocio">
+          </div>
+          <div class="admin-field">
+            <label for="ownerName">Nombre del propietario</label>
+            <input id="ownerName" name="ownerName" required maxlength="100">
+          </div>
+          <div class="admin-field">
+            <label for="contactPhone">Teléfono de contacto</label>
+            <input id="contactPhone" name="contactPhone" type="tel" maxlength="24" placeholder="Número de contacto">
+          </div>
+          <div class="admin-field">
+            <label for="whatsappNumber">Número de WhatsApp</label>
+            <input id="whatsappNumber" name="whatsappNumber" type="tel" required maxlength="24" placeholder="573001234567">
+            <small>Incluye el indicativo del país, por ejemplo 57 para Colombia.</small>
+          </div>
+          <div class="admin-field admin-field-wide">
+            <label for="storeAddress">Dirección del negocio</label>
+            <textarea id="storeAddress" name="address" rows="2" maxlength="180" placeholder="Dirección para mostrar a los clientes"></textarea>
+          </div>
+          <div class="admin-form-footer admin-field-wide">
+            <p class="admin-form-message" id="storeSettingsMessage" role="status"></p>
+            <button class="btn-primary" type="submit">Guardar datos</button>
+          </div>
+        </form>
+
+        <div class="admin-subsection">
+          <div>
+            <h3>Imagen principal</h3>
+            <p>Actualiza la fotografía destacada de la portada.</p>
+          </div>
+          <form id="heroImageForm" class="hero-upload-form">
+            <div class="admin-file-picker">
+              <input class="admin-file-input" id="heroImageInput" type="file" accept="image/*" aria-label="Seleccionar imagen de portada">
+              <label class="admin-file-trigger" for="heroImageInput">Seleccionar imagen</label>
+              <span class="admin-file-name" id="heroImageFileName">Sin archivo seleccionado</span>
+            </div>
+            <button class="btn-secondary" type="submit">Actualizar portada</button>
+            <p class="admin-form-message" id="heroImageMessage" role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="products" hidden>
+        <div class="admin-panel-heading">
+          <div>
+            <h2>Catálogo de productos</h2>
+            <p>Agrega o elimina piezas. La tienda acomoda las tarjetas automáticamente según la pantalla.</p>
+          </div>
+          <span class="product-count" id="productCount">0 productos</span>
+        </div>
+        <form id="productForm" class="product-admin-form">
+          <div class="admin-field">
+            <label for="productName">Nombre del producto</label>
+            <input id="productName" required maxlength="100" placeholder="Ej: Zorro Silvestre">
+          </div>
+          <div class="admin-field">
+            <label for="productPrice">Precio en COP</label>
+            <input id="productPrice" type="number" min="0" step="1000" required placeholder="250000">
+          </div>
+          <div class="admin-field admin-field-wide">
+            <label for="productImage">Fotografía</label>
+            <div class="admin-file-picker">
+              <input class="admin-file-input" id="productImage" type="file" accept="image/*" aria-label="Seleccionar fotografía del producto">
+              <label class="admin-file-trigger" for="productImage">Seleccionar fotografía</label>
+              <span class="admin-file-name" id="productImageFileName">Sin archivo seleccionado</span>
+            </div>
+            <small>Usa una imagen de hasta 2 MB.</small>
+          </div>
+          <div class="admin-form-footer admin-field-wide">
+            <p class="admin-form-message" id="productMessage" role="status"></p>
+            <button class="btn-primary" type="submit">Agregar producto</button>
+          </div>
+        </form>
+        <div class="admin-product-list" id="adminProductList"></div>
+      </section>
+
+      <section class="admin-panel" data-admin-panel="access" hidden>
+        <div class="admin-panel-heading">
+          <div>
+            <h2>Accesos administrativos</h2>
+            <p>Crea credenciales adicionales para personas de confianza.</p>
+          </div>
+        </div>
+        <form id="adminCredentialForm" class="credential-form">
+          <div class="admin-field">
+            <label for="newAdminUser">Nuevo usuario</label>
+            <input id="newAdminUser" required minlength="3" maxlength="32" autocomplete="off" placeholder="Ej: ana.admin">
+          </div>
+          <div class="admin-field">
+            <label for="newAdminEmail">Correo electrónico <span class="optional-label">Opcional</span></label>
+            <input id="newAdminEmail" type="email" autocomplete="email" placeholder="ana@correo.com">
+          </div>
+          <div class="admin-field">
+            <label for="newAdminPassword">Contraseña</label>
+            <input id="newAdminPassword" type="password" required minlength="8" autocomplete="new-password" placeholder="Mínimo 8 caracteres">
+          </div>
+          <p class="admin-form-message" id="credentialMessage" role="status"></p>
+          <button class="btn-primary" type="submit">Crear credencial</button>
+        </form>
+      </section>
+
+      <p class="admin-storage-note">Los cambios se guardan en este navegador. Para publicar los cambios a todos los visitantes, la tienda debe estar alojada con un servicio de datos compartido.</p>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

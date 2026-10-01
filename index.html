@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hilos & Sueños | Arte Tejido</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <button class="menu-btn" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="siteMenu">&#9776;</button>
+    </div>
+
+    <div class="logo">
+      <div class="logo-title-row">
+        <img class="brand-side-image" src="imagenes/descarga.jfif" alt="Ilustración bajo un cielo nocturno">
+        <h1 id="storeCompanyName">HILOS & SUEÑOS</h1>
+        <img class="brand-side-image" src="imagenes/hodaaaaa%E2%9D%A4.jfif" alt="Ilustración de un gatito">
+      </div>
+      <span>Arte Tejido</span>
+      <small class="brand-owner" id="storeOwnerName">Anamaria Caceres Rincon</small>
+    </div>
+
+    <div class="nav-right">
+      <div class="customer-session" id="customerSession" hidden>
+        <span class="customer-avatar" id="customerAvatar" aria-hidden="true"></span>
+        <span id="customerGreeting"></span>
+        <button id="customerLogoutBtn" type="button">Salir</button>
+      </div>
+      <a class="icon-btn admin-link" id="adminLoginLink" href="admin.html" title="Iniciar sesión de administrador" aria-label="Iniciar sesión de administrador">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="16" r="4"></circle><path d="m11 13 9-9 3 3-2 2 2 2-3 3-2-2-4 4"></path></svg>
+      </a>
+      <div class="admin-profile" id="adminProfile" hidden>
+        <button class="admin-profile-trigger" id="adminProfileToggle" type="button" aria-expanded="false" aria-controls="adminProfileMenu">
+          <span class="admin-profile-avatar">
+            <img id="adminProfilePhotoView" alt="" hidden>
+            <span id="adminProfileInitials">A</span>
+          </span>
+          <span class="admin-profile-name" id="adminProfileName"></span>
+          <svg class="admin-profile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+        <div class="admin-profile-menu" id="adminProfileMenu" hidden>
+          <span class="admin-profile-menu-heading">Sesión de administración</span>
+          <a href="admin.html">Administrar tienda</a>
+          <button id="adminProfileLogout" type="button">Cerrar sesión</button>
+        </div>
+      </div>
+      <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false" title="Activar modo oscuro">
+        <svg class="theme-moon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"></path></svg>
+        <svg class="theme-sun" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+      </button>
+      <button class="icon-btn cart-btn" id="cartBtn" aria-label="Abrir carrito de compras" aria-haspopup="dialog" aria-controls="cartModal">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span class="cart-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-links" id="siteMenu" aria-label="Navegación principal" aria-hidden="true">
+    <div class="menu-panel-head">
+      <div>
+        <span class="menu-kicker">Hilos & Sueños</span>
+        <strong>Descubre la colección</strong>
+      </div>
+      <button class="menu-close" id="menuClose" type="button" aria-label="Cerrar menú">&times;</button>
+    </div>
+    <a href="#inicio" data-route="inicio">Inicio</a>
+    <a href="#coleccion" data-route="coleccion">Colecciones</a>
+    <a href="#personalizados" data-route="personalizados">Personalizados</a>
+    <a href="#contactenos" data-route="contactenos">Contáctenos</a>
+    <a href="#historia" data-route="historia">Nuestra Historia</a>
+    <a href="#registro" data-route="registro">Registrarse / Iniciar sesión</a>
+  </nav>
+  <button class="menu-backdrop" id="menuBackdrop" type="button" aria-label="Cerrar menú" hidden></button>
+
+  <main class="route-container" id="routeContainer">
+    <section class="page-view" id="homePage" data-page-view="inicio">
+      <section class="hero-section">
+        <div class="hero-card">
+          <div class="hero-image-container">
+            <img id="heroImage" src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=1000&q=80" alt="Figura tejida hero">
+          </div>
+          <div class="hero-text-card">
+            <h2>TU MUNDO HECHO A MANO</h2>
+            <p>Encanto, elegancia y refinamiento en cada punto de nuestros amigurumis artesanales.</p>
+            <button class="btn-primary" type="button" data-route="coleccion">EXPLORAR TIENDA</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="features-band" aria-label="Destacados">
+        <div class="feature-item">
+          <span class="feature-label">Hecho a mano</span>
+          <strong>100% artesanal</strong>
+        </div>
+        <div class="feature-item">
+          <span class="feature-label">Cuidado</span>
+          <strong>Materiales suaves</strong>
+        </div>
+        <div class="feature-item">
+          <span class="feature-label">Unicidad</span>
+          <strong>Piezas exclusivas</strong>
+        </div>
+        <div class="feature-item">
+          <span class="feature-label">Entrega</span>
+          <strong>Personalizada</strong>
+        </div>
+      </section>
+    </section>
+
+    <section class="page-view editorial-section" id="historyPage" data-page-view="historia" hidden>
+      <div class="editorial-intro">
+        <p class="eyebrow">Boutique artesanal</p>
+        <h2>Amigurumis con alma, estilo y presencia.</h2>
+        <p>Cada figura nace con un detalle pensado para acompañar momentos tiernos, regalos memorables y espacios con personalidad.</p>
+      </div>
+
+      <div class="editorial-grid">
+        <article class="editorial-card editorial-card-large">
+          <div class="card-badge">Colección signature</div>
+          <h3>Texturas delicadas, mirada elegante.</h3>
+          <p>Paletas suaves, proporciones cuidadas y un acabado premium que convierte cada pieza en una obra de arte para regalar.</p>
+        </article>
+        <article class="editorial-card">
+          <span>01</span>
+          <h3>Diseños pensados para regalar</h3>
+        </article>
+        <article class="editorial-card">
+          <span>02</span>
+          <h3>Tejido con atención al detalle</h3>
+        </article>
+        <article class="editorial-card">
+          <span>03</span>
+          <h3>Estética boutique para cada rincón</h3>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-view products-section" id="collectionPage" data-page-view="coleccion" hidden>
+      <div class="section-header">
+        <p class="eyebrow">Piezas tejidas una a una</p>
+        <h2>Curaduría de la Colección</h2>
+        <p class="subtitle">Piezas únicas teñidas en colores neutros y suaves</p>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="page-view customizer-page" id="customizerPage" data-page-view="personalizados" hidden>
+      <header class="page-heading">
+        <p class="eyebrow">Hecho para ti</p>
+        <h2>Diseña tu pieza personalizada</h2>
+        <p>Elige la lana, su color y el estilo. Te enviaremos tu idea por WhatsApp.</p>
+      </header>
+
+      <div class="customizer-layout">
+        <form class="customizer-form" id="customizerForm">
+          <fieldset class="customizer-group">
+            <legend>1. Color de la lana</legend>
+            <div class="yarn-swatches" role="group" aria-label="Colores de lana">
+              <button class="yarn-swatch is-selected" type="button" data-color="#d88b79" style="--swatch-color: #d88b79" aria-label="Rosa arcilla" aria-pressed="true"></button>
+              <button class="yarn-swatch" type="button" data-color="#e7c776" style="--swatch-color: #e7c776" aria-label="Amarillo miel" aria-pressed="false"></button>
+              <button class="yarn-swatch" type="button" data-color="#80a994" style="--swatch-color: #80a994" aria-label="Verde salvia" aria-pressed="false"></button>
+              <button class="yarn-swatch" type="button" data-color="#8297b4" style="--swatch-color: #8297b4" aria-label="Azul nube" aria-pressed="false"></button>
+              <button class="yarn-swatch" type="button" data-color="#b99bb7" style="--swatch-color: #b99bb7" aria-label="Lila suave" aria-pressed="false"></button>
+              <label class="custom-color-picker" title="Elegir otro color">
+                <input type="color" id="customYarnColor" value="#d88b79" aria-label="Elegir otro color de lana">
+                <span>+</span>
+              </label>
+            </div>
+            <p class="choice-caption" id="selectedColorName">Rosa arcilla</p>
+          </fieldset>
+
+          <div class="customizer-group">
+            <label for="materialChoice">2. Tipo de material</label>
+            <select id="materialChoice">
+              <option>Algodón hipoalergénico</option>
+              <option>Lana merino suave</option>
+              <option>Terciopelo afelpado</option>
+              <option>Hilo reciclado</option>
+            </select>
+          </div>
+
+          <fieldset class="customizer-group">
+            <legend>3. Tipo de diseño</legend>
+            <div class="design-options">
+              <label class="design-option"><input type="radio" name="customDesign" value="Animalito amigurumi" checked><span>Animalito</span></label>
+              <label class="design-option"><input type="radio" name="customDesign" value="Personaje personalizado"><span>Personaje</span></label>
+              <label class="design-option"><input type="radio" name="customDesign" value="Accesorio tejido"><span>Accesorio</span></label>
+            </div>
+          </fieldset>
+
+          <div class="customizer-group">
+            <label for="customNotes">Detalles o idea especial</label>
+            <textarea id="customNotes" rows="3" maxlength="300" placeholder="Cuéntanos cómo te lo imaginas"></textarea>
+          </div>
+          <button class="btn-primary" type="submit">Enviar diseño por WhatsApp</button>
+          <p class="customizer-message" id="customizerMessage" role="status"></p>
+        </form>
+
+        <aside class="customizer-preview" id="customizerPreview" aria-live="polite">
+          <img src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=900&q=80" alt="Lanas de colores para tejer">
+          <div class="preview-detail">
+            <span class="preview-kicker">Tu combinación</span>
+            <h3 id="previewDesign">Animalito amigurumi</h3>
+            <p id="previewMaterial">Algodón hipoalergénico</p>
+            <div class="preview-color-line">
+              <span class="preview-yarn-dot" id="previewYarnDot"></span>
+              <span id="previewColorText">Rosa arcilla</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="page-view contact-page" id="contactPage" data-page-view="contactenos" hidden>
+      <div class="contact-panel">
+        <p class="eyebrow">Estamos para ayudarte</p>
+        <h2>Contáctenos</h2>
+        <p id="contactChatNote">Escríbenos directamente al chat de la empresa para consultar o hacer tu pedido.</p>
+        <div class="contact-number-row">
+          <span class="contact-number-label">Chat de contacto</span>
+          <strong id="contactPhoneDisplay">573001234567</strong>
+        </div>
+        <div class="contact-number-row" id="contactTelephoneRow" hidden>
+          <span class="contact-number-label">Teléfono</span>
+          <strong id="contactTelephoneDisplay"></strong>
+        </div>
+        <div class="contact-number-row" id="contactAddressRow" hidden>
+          <span class="contact-number-label">Dirección</span>
+          <strong id="contactAddressDisplay"></strong>
+        </div>
+        <div class="contact-actions">
+          <a class="btn-primary contact-whatsapp-link" id="contactWhatsappLink" href="https://wa.me/573001234567" target="_blank" rel="noreferrer" aria-label="Contáctenos en el chat de la empresa">Contáctenos</a>
+          <button class="btn-secondary contact-return-button" type="button" data-route="inicio">Volver a la tienda</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-view account-page" id="registrationPage" data-page-view="registro" hidden aria-labelledby="customerAccountTitle">
+      <div class="account-panel">
+        <p class="eyebrow">Hilos & Sueños</p>
+        <h2 id="customerAccountTitle">Tu cuenta</h2>
+        <p class="account-storage-note">Tu cuenta se guarda solo en este navegador.</p>
+        <div class="customer-signed-in" id="customerSignedIn" hidden>
+          <p id="customerAccountGreeting"></p>
+          <button class="btn-secondary" id="customerPageLogoutBtn" type="button">Cerrar sesión</button>
+        </div>
+        <div class="account-tabs" role="tablist" aria-label="Opciones de cuenta">
+          <button id="customerLoginTab" type="button" role="tab" aria-selected="false">Iniciar sesión</button>
+          <button id="customerRegisterTab" type="button" role="tab" aria-selected="true">Registrarse</button>
+        </div>
+        <form id="customerLoginForm" class="account-form" hidden>
+          <label for="customerLoginEmail">Usuario o correo electrónico</label>
+          <input type="text" id="customerLoginEmail" autocomplete="username" autocapitalize="none" required placeholder="Tu usuario o correo">
+          <label for="customerLoginPassword">Contraseña</label>
+          <input type="password" id="customerLoginPassword" autocomplete="current-password" required placeholder="Tu contraseña">
+          <button class="btn-primary" type="submit">Ingresar</button>
+          <p class="account-message" id="customerLoginMessage" role="status"></p>
+        </form>
+        <form id="customerRegisterForm" class="account-form">
+          <label for="customerName">Nombre</label>
+          <input type="text" id="customerName" autocomplete="name" required maxlength="80" placeholder="Tu nombre">
+          <label for="customerUsername">Nombre de usuario</label>
+          <input type="text" id="customerUsername" autocomplete="username" autocapitalize="none" required minlength="3" maxlength="32" placeholder="Ej: ana.teje">
+          <label for="customerEmail">Correo electrónico <span class="optional-label">Opcional</span></label>
+          <input type="email" id="customerEmail" autocomplete="email" placeholder="tu@correo.com">
+          <label for="customerPassword">Contraseña</label>
+          <input type="password" id="customerPassword" autocomplete="new-password" required minlength="8" placeholder="Mínimo 8 caracteres">
+          <button class="btn-primary" type="submit">Crear cuenta</button>
+          <p class="account-message" id="customerRegisterMessage" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="modal-content cart-modal-content">
+      <button class="close-btn" id="closeCart" type="button" aria-label="Cerrar carrito">&times;</button>
+      <h3 id="cartTitle">Tu carrito</h3>
+      <div class="cart-items" id="cartItems"></div>
+      <p class="cart-empty" id="cartEmpty">Aún no has agregado piezas.</p>
+      <div class="cart-summary">
+        <span>Total</span>
+        <strong id="cartTotal">$ 0</strong>
+      </div>
+      <button class="btn-primary cart-checkout" id="checkoutBtn" type="button">Pedir por WhatsApp</button>
+    </div>
+  </div>
+
+  <footer id="contacto">
+    <p>&copy; 2026 <span id="storeLegalName">Hilos & Sueños</span>. Todos los derechos reservados.</p>
+    <p class="footer-owner">Propiedad de <span id="footerOwnerName">Anamaria Caceres Rincon</span></p>
+  </footer>
+
+  <a id="floatingWhatsapp" class="floating-contact" href="https://wa.me/573001234567" target="_blank" rel="noreferrer" aria-label="Contáctenos con Hilos & Sueños" title="Contáctenos">
+    <svg class="yarn-doll-icon" viewBox="0 0 36 36" aria-hidden="true" focusable="false">
+      <path class="doll-head" d="M11 10.2c0-4.2 3-7.2 7-7.2s7 3 7 7.2v1.2c0 4-3 7-7 7s-7-3-7-7v-1.2Z"/>
+      <circle class="doll-ear" cx="10.8" cy="11" r="2.2"/>
+      <circle class="doll-ear" cx="25.2" cy="11" r="2.2"/>
+      <path class="doll-body" d="M13.2 18.2c1.3-.9 2.9-1.3 4.8-1.3s3.5.4 4.8 1.3l3.2 9.2c.4 1.2-.5 2.4-1.8 2.4h-12.4c-1.3 0-2.2-1.2-1.8-2.4l3.2-9.2Z"/>
+      <path class="doll-limbs" d="m12.8 20.2-4 5.1m14.4-5.1 4 5.1m-11.3 4.5-1.5 3m5.2-3 1.5 3"/>
+      <path class="doll-stitches" d="M14.1 21.1c2.2 1.4 5.6 1.4 7.8 0m-8.8 3.3c2.7 1.3 7.1 1.3 9.8 0"/>
+      <circle class="doll-eye" cx="15.1" cy="10.8" r=".75"/>
+      <circle class="doll-eye" cx="20.9" cy="10.8" r=".75"/>
+      <path class="doll-smile" d="M15.7 13.6c1.4 1.3 3.2 1.3 4.6 0"/>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
